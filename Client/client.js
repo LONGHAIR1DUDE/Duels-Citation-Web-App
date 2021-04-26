@@ -30,6 +30,7 @@ function majTab(etatCourant) {
     tTout.classList.add("is-active");
     dDuel.style.display = "none";
     tDuel.classList.remove("is-active");
+    afficherCitation();
   }
 }
 
@@ -61,7 +62,25 @@ function registerTabClick(etatCourant) {
   document.getElementById("tab-tout").onclick = () =>
     clickTab("tout", etatCourant);
 }
-
+function addRow(id,char,quote)
+{
+  let tbody = document.getElementById("tablebody");
+  var newRow = tbody.insertRow();
+  var idCell = newRow.insertCell();
+  idCell.appendChild(document.createTextNode(id));
+  var charCell = newRow.insertCell();
+  charCell.appendChild(document.createTextNode(char));
+  var quoteCell = newRow.insertCell();
+  quoteCell.appendChild(document.createTextNode(quote));
+}
+function afficherCitation()
+{
+  let tbody = document.getElementById("tablebody");
+   console.log(tbody);
+  fetch('https://lifap5.univ-lyon1.fr/citations').then(response=>response.json()).
+  then(json=> {for(let i =4;i<=json.length;i++) {addRow(i,json[i].character,json[i].quote)}});
+  
+}
 /* ******************************************************************
  * Gestion de la boîte de dialogue (a.k.a. modal) d'affichage de
  * l'utilisateur.
