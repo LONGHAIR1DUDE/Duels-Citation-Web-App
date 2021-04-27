@@ -1,8 +1,8 @@
 /* ******************************************************************
  * Constantes de configuration
  */
-const apiKey = "63be9e76-7cd1-4c34-a396-2927f9ef0614";
-const serverUrl = "https://lifap5.univ-lyon1.fr/";
+const apiKey = '63be9e76-7cd1-4c34-a396-2927f9ef0614';
+const serverUrl = 'https://lifap5.univ-lyon1.fr/';
 
 /* ******************************************************************
  * Gestion des tabs "Voter" et "Toutes les citations"
@@ -25,6 +25,7 @@ function majTab(etatCourant) {
     tDuel.classList.add("is-active");
     dTout.style.display = "none";
     tTout.classList.remove("is-active");
+    afficheAlea();
   } else {
     dTout.style.display = "flex";
     tTout.classList.add("is-active");
@@ -62,24 +63,56 @@ function registerTabClick(etatCourant) {
   document.getElementById("tab-tout").onclick = () =>
     clickTab("tout", etatCourant);
 }
-function addRow(id,char,quote)
+function addRow(item,index)
 {
   let tbody = document.getElementById("tablebody");
-  var newRow = tbody.insertRow();
-  var idCell = newRow.insertCell();
-  idCell.appendChild(document.createTextNode(id));
-  var charCell = newRow.insertCell();
-  charCell.appendChild(document.createTextNode(char));
-  var quoteCell = newRow.insertCell();
-  quoteCell.appendChild(document.createTextNode(quote));
+  let newRow = tbody.insertRow();
+  let idCell = newRow.insertCell();
+  idCell.appendChild(document.createTextNode(index + 1));
+  let charCell = newRow.insertCell();
+  charCell.appendChild(document.createTextNode(item.character));
+  let quoteCell = newRow.insertCell();
+  quoteCell.appendChild(document.createTextNode(item.quote));
 }
 function afficherCitation()
 {
   let tbody = document.getElementById("tablebody");
    console.log(tbody);
   fetch('https://lifap5.univ-lyon1.fr/citations').then(response=>response.json()).
-  then(json=> {for(let i =4;i<=json.length;i++) {addRow(i,json[i].character,json[i].quote)}});
+  then(json=> json.forEach(addRow));
   
+}
+function duelAlea()
+{
+  let x = Math.floor(Math.random() * 50);
+  let y = 0;
+  do
+  {
+     y = Math.floor(Math.random() * 50);
+    
+  }while(y==x);
+  
+  return {x,y};
+}
+function afficheduel(elementA,elementB)
+{
+  document.getElementById("imagechar").innerHTML = '<img src='+elementA.image+'/>'
+  document.getElementById("quote").innerHTML = elementA.quote;
+  document.getElementById("character").innerHTML = elementA.character;
+  document.getElementById("imagechar-right").innerHTML = '<img src='+elementB.image+' style=\"transform: scaleX(-1)\" />';
+  document.getElementById("quote-right").innerHTML = elementB.quote;
+  document.getElementById("character-right").innerHTML = elementB.character;
+}
+function afficheAlea()
+{ 
+  console.log(duelAlea());
+  const al = duelAlea();
+  let a = al.x;
+  let b = al.y;
+  console.log(a);
+  fetch('https://lifap5.univ-lyon1.fr/citations').then(response=>response.json()).
+  then(json=> afficheduel(json[a],json[b]));
+
 }
 /* ******************************************************************
  * Gestion de la boîte de dialogue (a.k.a. modal) d'affichage de
