@@ -67,12 +67,14 @@ function addRow(item,index)
 {
   let tbody = document.getElementById("tablebody");
   let newRow = tbody.insertRow();
+  newRow.setAttribute("onclick","afficherDetail(this)");
   let idCell = newRow.insertCell();
   idCell.appendChild(document.createTextNode(index + 1));
   let charCell = newRow.insertCell();
   charCell.appendChild(document.createTextNode(item.character));
   let quoteCell = newRow.insertCell();
   quoteCell.appendChild(document.createTextNode(item.quote));
+  
 }
 function afficherCitation()
 {
@@ -81,6 +83,14 @@ function afficherCitation()
   fetch('https://lifap5.univ-lyon1.fr/citations').then(response=>response.json()).
   then(json=> json.forEach(addRow));
   
+}
+function afficherDetail(Ob)
+{
+  
+  fetch('https://lifap5.univ-lyon1.fr/citations').then(response=>response.json()).
+  then(json=> console.log(json[Ob.rowIndex -1]));
+ 
+ 
 }
 function duelAlea()
 {
@@ -96,10 +106,12 @@ function duelAlea()
 }
 function afficheduel(elementA,elementB)
 {
-  document.getElementById("imagechar").innerHTML = '<img src='+elementA.image+'/>'
+  if(elementA.characterDirection == "Left") 
+  {document.getElementById("imagechar").innerHTML = '<img src='+elementA.image+'/>';}else document.getElementById("imagechar").innerHTML = '<img src='+elementA.image+' style=\"  -webkit-transform: scaleX(-1);transform: scaleX(-1);\"/>'
   document.getElementById("quote").innerHTML = elementA.quote;
   document.getElementById("character").innerHTML = elementA.character;
-  document.getElementById("imagechar-right").innerHTML = '<img src='+elementB.image+' style=\"transform: scaleX(-1)\" />';
+  if(elementB.characterDirection == "Right") 
+  {document.getElementById("imagechar-right").innerHTML = '<img src='+elementB.image+'/>';}else {document.getElementById("imagechar-right").innerHTML = '<img src='+elementB.image+' style=\"  -webkit-transform: scaleX(-1);transform: scaleX(-1);\"/>';}
   document.getElementById("quote-right").innerHTML = elementB.quote;
   document.getElementById("character-right").innerHTML = elementB.character;
 }
