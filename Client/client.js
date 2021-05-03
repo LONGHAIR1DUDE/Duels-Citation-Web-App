@@ -1,7 +1,7 @@
 /* ******************************************************************
  * Constantes de configuration
  */
-const apiKey2 = "402b4f2c-ed21-4b6d-8ab3-acf4162c8cec";
+const apiKey2 = "8eaa8eb9-298b-4ff8-a3f3-1aad4aeed2ae";
 const serverUrl = "https://lifap5.univ-lyon1.fr";  /*"http://localhost:3000";*/
 
 /* ******************************************************************
@@ -244,11 +244,11 @@ function listeCitations(jsonData,etatCourant)
                                        <th>${index +1}</th>
                                        <td>${x["character"]}</td>
                                        <td>${x["quote"]}</td>
-                                       <td><input type="button" class="button is-primary is-small" value="Détails"
+                                       <td><input type="button" class="button is-primary is-small" style="color:black" value="Détails"
                                             id=${x["_id"]} onclick="showDetails(this.getAttribute('id'))">
                                        </td>
                                        `+((x["addedBy"]!==undefined && etatCourant.loginName===x["addedBy"])
-                                       ? `<td><input id=${x["_id"]} type="button" class="button is-primary is-small" value="Modifier" 
+                                       ? `<td><input id=${x["_id"]} type="button" class="button is-primary is-small" style="color:black" value="Modifier" 
                                                onclick="showSetDetails(this.getAttribute('id'))">
                                           </td></tr>`
                                        : '</tr>')).join(" ");                 
@@ -291,7 +291,7 @@ function lanceCitationsEtInsereCitations(etatCourant)
 
 function fetchCitationId(id)
 {
-  console.log("fetchCitationId");
+  
   return fetch(serverUrl + `/citations/`+id)
     .then((response) => response.json())
       .then((jsonData) => {
