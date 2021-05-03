@@ -2,7 +2,7 @@
  * Constantes de configuration
  */
 const apiKey2 = '63be9e76-7cd1-4c34-a396-2927f9ef0614';
-const serverUrl = "https://lifap5.univ-lyon1.fr";  /*"http://localhost:3000";*/
+const serverUrl = "https://lifap5.univ-lyon1.fr";
 
 /* ******************************************************************
  * Gestion des tabs "Voter" et "Toutes les citations"
