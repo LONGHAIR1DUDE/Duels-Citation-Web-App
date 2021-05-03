@@ -1,7 +1,7 @@
 /* ******************************************************************
  * Constantes de configuration
  */
-const apiKey2 = '63be9e76-7cd1-4c34-a396-2927f9ef0614';
+const apiKey2 = '8eaa8eb9-298b-4ff8-a3f3-1aad4aeed2ae';
 const serverUrl = "https://lifap5.univ-lyon1.fr";
 
 /* ******************************************************************
