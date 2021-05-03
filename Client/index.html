@@ -1,10 +1,11 @@
+<!DOCTYPE html>
 <html>
   <head>
     <title>Duels de citations</title>
     <link rel="stylesheet" href="bulma.min.css" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   </head>
-  <body id="hbody">
+  <body>
     <nav class="navbar" role="navigation" aria-label="main navigation">
       <div class="navbar-end">
         <div class="navbar-item">
@@ -28,61 +29,70 @@
           <li class="is-active" id="tab-duel">
             <a>Voter</a>
           </li>
-          <li id="tab-tout" onclick="afficherCitation()"><a>Toutes les citations</a></li>
+          <li id="tab-tout"><a>Toutes les citations</a></li>
+          <li id="tab-ajout"><a>Ajouter une citation</a></li>
         </ul>
       </div>
       <div class="columns" id="div-duel">
-        <div class="column">
-          <div class="card">
-            <div class="columns card-content">
-              <div class="column is-one-third">
-                <div class="card-image">
-                  <figure class="image" id="imagechar">
-                   
-                  </figure>
+        <div class="columns">
+          <div class="column">
+            <div class="card">
+              <div class="columns card-content" id="citation_1">
+                <div class="column is-one-third">
+                  <div class="card-image">
+                    <figure class="image">
+                      <img
+                        src="https://cdn.glitch.com/3c3ffadc-3406-4440-bb95-d40ec8fcde72%2FRalphWiggum.png?1497567511523"
+                      />
+                    </figure>
+                  </div>
+                </div>
+                <div class="column is-8">
+                  <p class="title">"They taste like...burning."</p>
+                  <p class="subtitle">Ralph Wiggum dans The Simpsons</p>
                 </div>
               </div>
-              <div class="column is-8">
-                <p class="title" id="quote"></p>
-                <p class="subtitle" id="character"></p>
-              </div>
-            </div>
-            <div class="card-content">
-              <div class="columns is-centered">
-                <p class="button is-danger">
-                  Voter pour la citation de gauche !
-                </p>
+              <div class="card-content">
+                <div class="columns is-centered">
+                  <p id="citationGauche" class="button is-danger">
+                    Voter pour la citation de gauche !
+                  </p>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        <div class="column">
-          <div class="card">
-            <div class="columns card-content">
-              <div class="column is-8">
-                <p class="title" id="quote-right">
-                  
-                </p>
-                <p class="subtitle" id="character-right"></p>
-              </div>
-              <div class="column is-one-third">
-                <div class="card-image">
-                  <figure class="image" id="imagechar-right">
-                   
-                  </figure>
+          <div class="column">
+            <div class="card">
+              <div class="columns card-content" id="citation_2">
+                <div class="column is-8">
+                  <p class="title">
+                    "I live in a single room above a bowling alley...and below
+                    another bowling alley."
+                  </p>
+                  <p class="subtitle">Frank Grimes dans The Simpsons</p>
+                </div>
+                <div class="column is-one-third">
+                  <div class="card-image">
+                    <figure class="image">
+                      <img
+                        src="https://cdn.glitch.com/3c3ffadc-3406-4440-bb95-d40ec8fcde72%2FFrankGrimes.png?1497567511887"
+                        style="transform: scaleX(-1)"
+                      />
+                    </figure>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="card-content">
-              <div class="columns is-centered">
-                <p class="button is-info">Voter pour la citation de droite !</p>
+              <div class="card-content">
+                <div class="columns is-centered">
+                  <button id="citationDroite" class="button is-info">Voter pour la citation de droite !</button>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
       <div id="div-tout">
-        <table class="table">
+        <table class="table" >
           <thead>
             <tr>
               <th>Classement</th>
@@ -90,10 +100,71 @@
               <th>Citation</th>
             </tr>
           </thead>
-          <tbody id="tablebody">
-            
+          <tbody id="tabCitations">          
+            <tr>
+              <th>1</th>
+              <td>Ralph Wiggum</td>
+              <td>They taste like...burning.</td>
+            </tr>
+            <tr>
+              <th>2</th>
+              <td>Frank Grimes</td>
+              <td>
+                I live in a single room above a bowling alley...and below
+                another bowling alley.
+              </td>
+            </tr>
+            <tr>
+              <th>3</th>
+              <td>Rainier Wolfcastle</td>
+              <td>My eyes! The goggles do nothing!</td>
+            </tr>
           </tbody>
         </table>
+      </div>
+
+      <div id="div-ajout" class="columns">
+        <div id="div-ajout2" class="column"> 
+          <div id="formulaire" class="columns is-centered is-7">
+            <div class="column is-half">
+              <form class="box">
+                <div class="column">
+                  <label class="label">Citation *</label>
+                  <textarea class="textarea is-primary" name="citation" id="quote" cols="30" rows="3" 
+                  required placeholder="Mais vous savez, moi je crois pas qu'il y ait de bonne ou de mauvaise situation..."></textarea>
+
+                  <label class="label">Personnage *</label>
+                  <input class="input is-primary" type="text" id="character" placeholder="Otis" required />
+
+                  <label class="label">Provenance *</label>
+                  <input class="input is-primary" type="text" id="origin" placeholder="Astérix et Obélix Mission Cléopatre" required />
+                </div>
+                <div class="column">
+                  <div class="columns">
+                    <div class="column is-three-quarters ">
+                      <label class="label">Image </label>
+                      <input class="input is-primary" type="text" id="image" placeholder="url de l'image" />
+                    </div>
+                    <div class="column is-one-quarter">
+                      <label class="label">Orientation regard</label>
+                      <div class="select is-primary">
+                        <select id="characterDirection">
+                          <option>Right</option>
+                          <option>Left</option>
+                        </select>
+                      </div>
+                  </div>
+                </div>
+              </div>
+              <div class="columns is-centered">
+                <div class="column is-narrow">
+                  <input type="button" class="button is-primary is-half" value="Ajouter !" id="ajouter"/>
+                </div>
+              </div>
+              </form>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
     <div id="mdl-login" class="modal is-active">
@@ -111,9 +182,45 @@
           <p id="elt-affichage-login">
             Ici, il faudrait afficher le login de l'utilisateur.
           </p>
+          <br>
+          <input type="button" id="connection" class="button is-primary is-half" value="Connexion" />
+          <input type="button" id="disconnection" class="button is-primary is-half" value="Deconnexion" />
         </section>
         <footer class="modal-card-foot" style="justify-content: flex-end">
           <button id="btn-close-login-modal2" class="button">Fermer</button>
+        </footer>
+      </div>
+    </div>
+
+    <div id="citation-details" class="modal">
+      <div class="modal-background">
+      </div>
+      <div class="modal-card">
+        <header class="modal-card-head">
+          <p class="modal-card-title">Details de la Citation</p>
+          <button class="delete" aria-label="close" onclick="clickFermeDetailsCitationClick()"></button>
+        </header>
+        <section class="modal-card-body">
+        <div id="sId" style="display: none;"></div>
+        <p><b>Nom du Personnage</b></p>
+        <div id="dCharacter" class="block"><p class="block">Otis</p></div>
+        <p><b>Citation </b></p>
+        <div id="dQuote" class="block"><p>dirais que c'est d'abord des rencontres</p></div>
+        <p><b>Provenance</b></p>
+        <div id="dOrigin" class="block"><p>Astérix et Obélix Mission Cléopatre</p></div>
+        <p><b>Image</b></p>
+        <div id="dImage" class="block"></div>
+        <p><b>Direction du regard</b></p>
+        <div id="dCharacterDirection" class="block"><p>Left</p></div>
+        <p><b>Contributeur</b></p>
+        <div id="dAddedBy" class="block"><p>Les Profs</p></div>
+        <br>
+        </section>
+        <footer class="modal-card-foot">
+          <div id="setButton" style="display: none;">
+            <button id="setDetails" class="button is-success" >Modifier</button>
+            <button class="button" onclick="clickFermeDetailsCitationClick()">Annuler</button>
+          </div>
         </footer>
       </div>
     </div>
