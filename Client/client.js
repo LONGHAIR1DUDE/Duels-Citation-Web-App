@@ -2,7 +2,7 @@
  * Constantes de configuration
  */
 const apiKey2 = "8eaa8eb9-298b-4ff8-a3f3-1aad4aeed2ae";
-const serverUrl = "https://lifap5.univ-lyon1.fr";  /*"http://localhost:3000";*/
+const serverUrl = "https://lifap5.univ-lyon1.fr";  
 
 /* ******************************************************************
  * Gestion des tabs "Voter" et "Toutes les citations"
@@ -317,7 +317,7 @@ function showDetails(id)
       document.getElementById("dAddedBy").innerHTML=jsonData["addedBy"];
     }
     else{
-      document.getElementById("dAddedBy").innerHTML="Les Profs";
+      document.getElementById("dAddedBy").innerHTML="LIFAP5";
     }
     document.getElementById("dCharacter").innerHTML=`<p>${jsonData["character"]}</p>`
     document.getElementById("dQuote").innerHTML=`<p>${jsonData["quote"]}</p>`;
@@ -340,7 +340,7 @@ function clickFermeDetailsCitationClick()
 
 
 /**********************************************************
- * Debut de la fonctionnalité modifier citation
+ * Modification d'une citation
  *********************************************************/
 
 /**
@@ -777,7 +777,7 @@ function modifier_affichage_citation(citation,citation_id)
 }
 
 /**
- * Change les donées liées au deux citatons dans le code html.
+ * Change les données liées au deux citatons dans le code html.
  * @param {string} citation_une
  * @param {string} citation_deux
  */
