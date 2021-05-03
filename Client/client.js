@@ -291,8 +291,7 @@ function lanceCitationsEtInsereCitations(etatCourant)
 
 function fetchCitationId(id)
 {
-  
-  return fetch(serverUrl + `/citations/`+id)
+   return fetch(serverUrl + `/citations/`+id)
     .then((response) => response.json())
       .then((jsonData) => {
         if (jsonData.status && Number(jsonData.status) != 200) {
